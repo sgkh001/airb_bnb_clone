@@ -10,3 +10,9 @@ class CreateBookings < ActiveRecord::Migration[7.0]
     end
   end
 end
+
+class AddParticipantsToBookings < ActiveRecord::Migration[7.0]
+  def change
+    add_column :bookings, :participants, :integer
+  end
+end
