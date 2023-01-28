@@ -1,7 +1,10 @@
 <h1>Booking</h1>
 
 <%= form_with model: (@bookings) do |f| %>
+  <%= f.label :name %>
   <%= f.date_field :date %>
   <%= f.time_field :time %>
-  <%= f.guests_field :number_of number_of_guest %>
+  <%= f.label :guest %>
+  <%= f.number_field :number_of_guest %>
+  <%= f.submit %>
 <% end %>
