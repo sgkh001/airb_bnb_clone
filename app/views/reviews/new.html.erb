@@ -1,0 +1,7 @@
+<div class="div container">
+  <%= simple_form_for [@venue, @review] do |f| %>
+    <%= f.input :comment %>
+    <%= f.input :ratings %>
+    <%= f.submit "Submit review", class: "btn btn-gradient" %>
+  <% end %>
+</div>
