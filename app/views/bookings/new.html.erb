@@ -1,10 +1,8 @@
 <h1>Booking</h1>
 
-<%= form_with model: (@bookings) do |f| %>
-  <%= f.label :name %>
-  <%= f.date_field :date %>
-  <%= f.time_field :time %>
-  <%= f.label :guest %>
-  <%= f.number_field :number_of_guest %>
+<%= simple_form_for(booking) do |f| %>
+  <%= f.input :date %>
+  <%= f.input :timeframe %>
+  <%= f.input :guests %>
   <%= f.submit %>
 <% end %>
