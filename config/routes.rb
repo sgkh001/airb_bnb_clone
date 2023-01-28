@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :venues do
     resources :reviews, only: [:index, :new, :create, :show]
-    resources :bookings
+    resources :bookings, except: [:index]
   end
+  resources :bookings, only: [:index]
 end

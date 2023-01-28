@@ -11,3 +11,10 @@
   venue_path(@venue),
   data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
 %>
+
+<%= simple_form_for [@venue, @booking] do |f| %>
+  <%= f.input :date %>
+  <%= f.input :time_frame %>
+  <%= f.input :number_of_guest %>
+  <%= f.submit %>
+<% end %>

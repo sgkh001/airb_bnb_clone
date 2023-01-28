@@ -3,13 +3,8 @@
 <ul>
   <% @bookings.each do |booking| %>
    <li><%= booking.date%><li>
-   <li><%= booking.time%><li>
+   <li><%= booking.time_frame%><li>
    <li><%= booking.number_of_guest%><li>
-   <% end %>%>
+   <% end %>
 </ul>
 
-<ul>
-  <% @bookings.each do |booking| %>
-    <li><%= link_to booking.date, booking_path(booking) %></li>
-  <% end %>
-</ul>
