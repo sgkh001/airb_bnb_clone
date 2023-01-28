@@ -3,5 +3,5 @@
 <%= form_with model: (@bookings) do |f| %>
   <%= f.date_field :date %>
   <%= f.time_field :time %>
-  <%= f.guests_field :number_of number_of_guest %>
+  <%= f.number_of_guest_field :number_of_guest %>
 <% end %>
