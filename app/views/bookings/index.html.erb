@@ -1,0 +1,15 @@
+<h1>Bookings</h1>
+
+<ul>
+  <% @bookings.each do |booking| %>
+   <li><%= booking.date%><li>
+   <li><%= booking.time%><li>
+   <li><%= booking.number_of_guest%><li>
+   <% end %>%>
+</ul>
+
+<ul>
+  <% @bookings.each do |booking| %>
+    <li><%= link_to booking.date, booking_path(booking) %></li>
+  <% end %>
+</ul>
