@@ -1,13 +1,15 @@
-<h1>SHOW</h1>
-
-<h2><%= @venue.name %></h2>
+<div class= showpage>
+<h1><%= @venue.name %></h1>
 <p><%= @venue.address %></p>
 <p><%= @venue.price %></p>
 <p><%= @venue.description %></p>
 <p><%= @venue.capacity %></p>
 <p><%= @venue.contact_number %></p>
 
+<li><%= link_to "Back", venues_path(@venue) %></li>
+
 <%= link_to "Delete",
   venue_path(@venue),
   data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
 %>
+</div>

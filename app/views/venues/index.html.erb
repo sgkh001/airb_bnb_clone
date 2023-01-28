@@ -1,7 +1,20 @@
-<h1>INDEX</h1>
+<h1>Find a space designed to suit your
+business needs for now and the future.</h1>
 
+<div class="container">
 <ul>
   <% @venues.each do |venue| %>
+  <div class="grid_container">
+  <div class="card" style="width: 18rem;">
+  <div class="card-body">
+  <div class="card-elements">
+   <h5 class="card-title"><%venue.name%></h5>
+   <p class="card-text"><%=venue.price%></p>
+   </div>
     <li><%= link_to venue.name, venue_path(venue) %></li>
+    </div>
+    </div>
+  </div>
   <% end %>
 </ul>
+</div>
