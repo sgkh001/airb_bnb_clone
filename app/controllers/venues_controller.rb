@@ -10,9 +10,13 @@ class VenuesController < ApplicationController
   end
 
   def create
-    @venue = Venue.new(params[:venue])
-    @venue.save
-    redirect_to venue_path(@venue)
+    @venue = Venue.new(venue_params)
+    @venue.user = current_user
+    if @venue.save
+      redirect_to venue_path(@venue)
+    else
+      render :new
+    end
   end
 
   def edit

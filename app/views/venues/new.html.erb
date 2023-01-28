@@ -1,15 +1,11 @@
-<%= form_with model: @venue do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :address %>
-  <%= f.text_field :address %>
-  <%= f.label :capacity %>
-  <%= f.text_field :capacity %>
-  <%= f.label :description %>
-  <%= f.text_field :desciption %>
-  <%= f.label :price %>
-  <%= f.number_field :price %>
-  <%= f.label :contact_number %>
-  <%= f.number_field :contact_number %>
+<h1>NEW</h1>
+
+<%= simple_form_for(@venue) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :description %>
+  <%= f.input :price %>
+  <%= f.input :capacity %>
+  <%= f.input :contact_number %>
   <%= f.submit %>
 <% end %>
