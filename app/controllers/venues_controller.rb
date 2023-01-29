@@ -1,6 +1,6 @@
 class VenuesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index, show]
-  
+  skip_before_action :authenticate_user!, only: %i[index show]
+
   def index
     @venues = Venue.all
   end
@@ -15,7 +15,7 @@ class VenuesController < ApplicationController
     if @venue.save
       redirect_to venue_path(@venue)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -38,12 +38,12 @@ class VenuesController < ApplicationController
   def destroy
     @venue = Venue.find(params[:id])
     @venue.destroy
-    redirect_to venue_path(@venue), status: :see_other
+    redirect_to venues_path, status: :see_other
   end
 
   private
 
   def venue_params
-    params.require(:venue).permit(:name, :address, :description, :price, :contact_number, :rating, :user_id, :capacity)
+    params.require(:venue).permit(:name, :address, :description, :price, :contact_number, :capacity)
   end
 end

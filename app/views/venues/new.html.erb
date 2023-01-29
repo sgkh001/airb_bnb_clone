@@ -1,11 +1,13 @@
-<h1>NEW</h1>
+<div class="container">
+  <h1>NEW</h1>
 
-<%= simple_form_for(@venue) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :address %>
-  <%= f.input :description %>
-  <%= f.input :price %>
-  <%= f.input :capacity %>
-  <%= f.input :contact_number %>
-  <%= f.submit %>
-<% end %>
+  <%= simple_form_for(@venue) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :address %>
+    <%= f.input :description %>
+    <%= f.input :price %>
+    <%= f.input :capacity %>
+    <%= f.input :contact_number %>
+    <%= f.submit %>
+  <% end %>
+</div>
