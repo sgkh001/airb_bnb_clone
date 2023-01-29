@@ -1,9 +1,18 @@
 <h1> A list of all Bookings for a specific user</h1>
+<hr>
+<% @bookings.each do |booking| %>
+<hr>
+  <% user_id = booking.user_id  %>
+  <% user = User.find(user_id)  %>
+  <% if current_user == user  %>
+  <% venue_id = booking.venue_id  %>
+  <% venue = Venue.find(venue_id)  %>
+  <p> Venue booked <%=venue.name%> </p>
+  <p> Booked by  <%= user.first_name%> <%= user.last_name%> </p>
+  <p> Date of booking <%= booking.date%> </p>
+  <p> Time of booking <%= booking.time_frame%> </p>
+  <p> Number of guest <%= booking.number_of_guest%> </p>
+  </div>
+<% end %>
 
-<ul>
-  <% @bookings.each do |booking| %>
-   <li><%= booking.date%><li>
-   <li><%= booking.time_frame%><li>
-   <li><%= booking.number_of_guest%><li>
-   <% end %>
-</ul>
+<% end %>

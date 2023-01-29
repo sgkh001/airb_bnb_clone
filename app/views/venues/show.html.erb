@@ -6,15 +6,18 @@
   <p><%= @venue.description %></p>
   <p><%= @venue.capacity %></p>
   <p><%= @venue.contact_number %></p>
-  <%= link_to "Delete",
+  <button><%= link_to "Delete",
     venue_path(@venue),
     data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-  %>
-  <%= link_to "Edit", edit_venue_path(@venue)%>
-  <%= link_to "<--- BACK TO ALL VENUES", venues_path%>
+  %></button>
+  <button><%= link_to "Edit", edit_venue_path(@venue)%></button>
+  <button><%= link_to "<--- BACK TO ALL VENUES", venues_path%></button>
+  <button><%= link_to "BOOK VENUE", new_venue_booking_path(@venue, @booking)%></button>
 </div>
 
 <div class="container">
+<hr>
+<h1> I WANT TO DISPLAY MY REVIEWS FOR THIS VENUE HERE</h1>
   <hr>
   BOOK <%= @venue.name  %>
   <hr>

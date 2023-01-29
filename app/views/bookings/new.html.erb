@@ -1,8 +1,9 @@
-<h1>Booking</h1>
-
-<%= simple_form_for[@booking] do |f| %>
-  <%= f.input :date %>
-  <%= f.input :time_frame %>
-  <%= f.input :number_of_guest %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <h1>Booking  <%= @venue.name%></h1>
+  <%= simple_form_for [@venue, @booking] do |f| %>
+    <%= f.input :date %>
+    <%= f.input :time_frame %>
+    <%= f.input :number_of_guest %>
+    <%= f.submit %>
+  <% end %>
+</div>

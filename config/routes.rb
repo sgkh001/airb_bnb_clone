@@ -8,12 +8,13 @@ Rails.application.routes.draw do
   resources :venues
   resources :venues do
     # we need a venue id to create(new), read(one), delete a booking
-    resources :bookings, except: [:edit, :update, :index]
-    # we need a venue id to create(new), read(one), delete a review
-    resources :reviews, only: [:edit, :update, :index]
+    resources :bookings, except: [:edit, :update, :index, :destroy] do
+      # we need a venue id to create(new), read(one), delete a review
+      resources :reviews, only: [:edit, :update, :index]
+    end
   end
   # bookings index(read all) doesn't need a venue id
-  resources :bookings, only: [:index]
+  resources :bookings, only: [:index, :destroy]
   # reviews index(read all) doesn't need a venue id
   resources :reviews, only: [:index]
 end
