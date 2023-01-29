@@ -1,17 +1,29 @@
-.grid_container {
+.header{
+  text-align: center;
+}
+
+.cards{
   display: grid;
-  padding-left: 80px;
-  padding-bottom: 80px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 15px;
 }
 
-.card-body{
-  width: 100%;
-  height: 300px;
-  border: 3px solid;
-  border: 20px;
-  box-shadow: 5px, gray;
+.card{
+  margin-top: 30px;
+  margin-bottom: 20px;
+  width: 300px;
+  height: 250px;
+  background-color: snow;
+  border: light lightgray;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
-.card-elements{
-  vertical-align: bottom;
+.card-image{
+  border: solid rgb(17, 13, 13);
+  width: 300px;
+  height: 250px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }

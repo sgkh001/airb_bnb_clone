@@ -1,20 +1,21 @@
+<div class="header">
 <h1>Find a space designed to suit your
-business needs for now and the future.</h1>
+business needs for now and the future!</h1>
+</div>
 
-<div class="container">
+<div class="container-fluid">
 <ul>
+<div class="cards">
   <% @venues.each do |venue| %>
-  <div class="grid_container">
-  <div class="card" style="width: 18rem;">
-  <div class="card-body">
-  <div class="card-elements">
-   <h5 class="card-title"><%venue.name%></h5>
-   <p class="card-text"><%=venue.price%></p>
-   </div>
+  <div class="card">
+  <div class="card-image"> <img src="/home/manu/code/manu1601/airb_bnb_clone/app/assets/images/seven coworking1.jpg" alt="Venue"></div>
+  <div class="card-info">
+   <h3><%venue.name%></h3>
     <li><%= link_to venue.name, venue_path(venue) %></li>
+    <p><%=venue.price%></p>
     </div>
     </div>
-  </div>
   <% end %>
+  </div>
 </ul>
 </div>
