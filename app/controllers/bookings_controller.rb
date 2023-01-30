@@ -1,7 +1,6 @@
 class BookingsController < ApplicationController
   def index
     @bookings = Booking.all
-    # @bookings = Booking.where(user: current_user)
   end
 
   def new
@@ -23,8 +22,8 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     # save the bookings
     if @booking.save!
-      # go back to all bookings
-      redirect_to bookings_path
+      # go back to all bookings for that venue
+      redirect_to venues_path
     else
       render :new, status: :unprocessable_entity
     end
