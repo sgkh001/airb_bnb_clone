@@ -33,6 +33,7 @@
     <p> at what time?  <%= booking.time_frame %> </p>
     <hr>
     <p> on which date <%= booking.date %> </p>
+    <button> <%= link_to "CONFIRM BOOKING", booking_path(booking)%>  </button>
     <hr>
     <hr>
     <% end %>
@@ -56,6 +57,8 @@
     <p> at what time?  <%= booking.time_frame %> </p>
     <hr>
     <p> on which date <%= booking.date %> </p>
+    <button><%= link_to "BOOKING STATUS", booking_path(booking) %>  </button>
+    <button> ADD REVIEW </button>
     <hr>
     <hr>
     <% end %>

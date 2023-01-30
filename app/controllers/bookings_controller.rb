@@ -23,7 +23,7 @@ class BookingsController < ApplicationController
     # save the bookings
     if @booking.save!
       # go back to all bookings for that venue
-      redirect_to venues_path
+      redirect_to venue_path(@venue)
     else
       render :new, status: :unprocessable_entity
     end
