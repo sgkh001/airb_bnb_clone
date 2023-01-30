@@ -5,6 +5,12 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-20.times do
-  Venue.create(name: "Test Venue", price: "1500$")
+require 'faker'
+
+30.times do
+  venue = Venue.new(
+    name: Faker::Company.name,
+    rating: rand(0..5)
+  )
+  venue.save
 end

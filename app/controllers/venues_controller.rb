@@ -2,7 +2,12 @@ class VenuesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index]
 
   def index
-    @venues = Venue.all
+    if params[:query].present?
+      sql_query = "name ILIKE :query OR description ILIKE :query"
+      @venues = Venue.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @venues = Venue.all
+    end
   end
 
   def new
