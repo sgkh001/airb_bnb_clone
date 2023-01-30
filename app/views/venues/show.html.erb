@@ -6,13 +6,23 @@
   <p><%= @venue.description %></p>
   <p><%= @venue.capacity %></p>
   <p><%= @venue.contact_number %></p>
+
+  <!-- button back to all venues all users-->
+  <button><%= link_to "<--- BACK TO ALL VENUES", venues_path%></button>
+   <!-- if user is an owner of venues to display the buttons below-->
+  <!-- button edit, show bookings, delte for owner-->
+
   <button><%= link_to "Delete",
     venue_path(@venue),
     data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
   %></button>
   <button><%= link_to "Edit", edit_venue_path(@venue)%></button>
-  <button><%= link_to "<--- BACK TO ALL VENUES", venues_path%></button>
+  <button><%= link_to "<---SHOW BOOKINGS-->", ""%></button>
+  <!-- else user will only see the button book venue-->
+  <!-- button book venues for users who are not owner-->
+
   <button><%= link_to "BOOK VENUE", new_venue_booking_path(@venue, @booking)%></button>
+ 
 </div>
 
 <div class="container">
