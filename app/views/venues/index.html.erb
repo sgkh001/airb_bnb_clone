@@ -1,10 +1,23 @@
-<h1> DISPLAY ONLY the venues OF AN OWNER + ADD A VENUE BUTTON</h1>
-<h1> DISPLAY All the venues FOR A USER WHO IS NOT AN OWNER -  ADD A VENUE BUTTON </h1>
-
-<ul>
+<div class="container">
+<h1> VENUES </h1>
+<hr>
+<% if user_signed_in? && current_user.owner == false || user_signed_in? == false %>
   <% @venues.each do |venue| %>
-    <li><%= link_to venue.name, venue_path(venue) %></li>
+    <%= link_to venue.name, venue_path(venue)  %>
+  <hr>
   <% end %>
-</ul>
-
+<% else %>
+  <% @venues.select do |venue| %>
+    <% if venue.user_id == current_user.id  %>
+      <%= link_to venue.name, venue_path(venue)  %>
+      <p> <%= venue.address %> </p>
+      <p><%= venue.price%> </p>
+      <p> <%= venue.contact_number %> </p>
+      <p> <%= venue.capacity%> </p>
+      <p><%= venue.description%> </p>
+    <hr>
+    <% end %>
+  <% end %>
 <%= link_to "ADD A VENUE", new_venue_path(@venue)%>
+<% end %>
+</div>
