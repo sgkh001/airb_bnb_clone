@@ -5,16 +5,21 @@ USER BOOKING IS DISABLED WITH 2 BUTTONS, 1-> confirm - green badge, 2-> cancel-w
 <hr>
 <div class="container">
 <!-- disabled-->
-<p> booking id <%= @booking.id %> </p>
-<p>user_id  <%= @booking.user_id %> </p>
-<p> venue_id <%= @booking.venue_id %> </p>
-<p> date <%= @booking.date %> </p>
-<p>time_frame <%= @booking.time_frame%> </p>
+<h1>BOOKING STATUS</h1>
+<% venue_id = @booking.venue_id %>
+<% venue= Venue.find(venue_id)  %>
+<p> VENUE BOOKED <%= venue.name %> </p>
+<% user_id = @booking.user_id %>
+<% user = User.find(user_id) %>
+<p> BOOKING DONE BY : <%= user.first_name%> <%= user.last_name  %> </p>
+<p> DATE BOOKED FOR : <%= @booking.date %> </p>
+<p>TIME BOOKED FOR :<%= @booking.time_frame%> </p>
 
 <% if current_user.owner %>
   <button> confirm</button>
   <button> cancel</button>
+<% else %>
+  <button> ADD REVIEW </button>
 <% end %>
-<button> ADD REVIEW </button>
 <button> <%= link_to "<--BACK TO BOOKINGS", bookings_path  %> </button>
 </div>

@@ -13,9 +13,6 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
     end
 
-
-
-
   # bookings index(read all) doesn't need a venue id
   resources :bookings, only: [:index, :destroy, :show]
 

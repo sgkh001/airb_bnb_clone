@@ -1,64 +1,44 @@
 <div class="container">
-<h1>ON THIS PAGE I WANT TO SEE ALL THE BOOKINGS an owner has/ user made</h1>
+<h1>BOOKINGS</h1>
 <hr>
 <hr>
 
 
 <% if current_user.owner? %>
-<!-- display user's first name-->
-  <p> owner's name: <%= current_user.first_name %> </p>
-  <p> is user an owner? <%= current_user.owner? %> </p>
-  <hr>
 <!-- get id of the owner-->
   <% owner = current_user.id %>
 <!-- get venues of owner-->
 <% owner_venue = Venue.where(user_id: owner)  %>
-<!-- display venues of owner-->
-<% owner_venue.each do |venue| %>
-  <p> owner's venues :<%= venue.name %> / venue id: <%= venue.id %> </p>
-<% end %>
-<hr>
-<hr>
-
 <% bookings =  Booking.where(venue_id: owner_venue) %>
   <% bookings.each do |booking| %>
-    <p> booking_id :<%= booking.id %></p>
-    <hr>
-    <p> user_id who did the booking <%= booking.user_id %> </p>
-    <hr>
-    <p> venue_id booked <%= booking.venue_id %> </p>
+    <% booking.venue_id %>
     <% venue =  Venue.find(booking.venue_id) %>
-    <p> what is the name of the venue booked? <%= venue.name %> </p>
+    <p> VENUE BOOKED <%= venue.name %> </p>
     <hr>
-    <p> at what time?  <%= booking.time_frame %> </p>
+    <% user_id = booking.user_id %>
+    <% user = User.find(user_id) %>
+    <p>BOOKING DONE BY : <%= user.first_name %> <%= user.last_name %>
     <hr>
-    <p> on which date <%= booking.date %> </p>
+    <p> TIME BOOKED FOR <%= booking.time_frame %> </p>
+    <hr>
+    <p> DATE BOOKED FOR <%= booking.date %> </p>
     <button> <%= link_to "CONFIRM BOOKING", booking_path(booking)%>  </button>
     <hr>
     <hr>
     <% end %>
 <% else %>
-<p> user's name: <%= current_user.first_name %> </p>
 <!-- get id of the user-->
-<p> user's id:  <%= user = current_user.id %> </p>
-<p> is user an owner? <%= current_user.owner? %> </p>
-<hr>
-<hr>
+<% user = current_user.id %>
 <% bookings = Booking.where(user_id: user) %>
 <% bookings.each do |booking| %>
-    <p> booking_id :<%= booking.id %></p>
-    <hr>
-    <p> user_id who did the booking <%= booking.user_id %> </p>
-    <hr>
-    <p> venue_id booked <%= booking.venue_id %> </p>
+    <% booking.venue_id %>
     <% venue =  Venue.find(booking.venue_id) %>
-    <p> what is the name of the venue booked? <%= venue.name %> </p>
+    <p> VENUE BOOKED : <%= venue.name %> </p>
     <hr>
-    <p> at what time?  <%= booking.time_frame %> </p>
+    <p>TIME BOOKED FOR: <%= booking.time_frame %> </p>
     <hr>
-    <p> on which date <%= booking.date %> </p>
+    <p>DATE BOOKED FOR: <%= booking.date %> </p>
     <button><%= link_to "BOOKING STATUS", booking_path(booking) %>  </button>
-    
     <hr>
     <hr>
     <% end %>

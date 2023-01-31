@@ -17,6 +17,12 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_to venue_path(@review.venue), status: :see_other
+  end
+
   private
 
   def set_venue
