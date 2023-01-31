@@ -17,7 +17,7 @@ class BookingsController < ApplicationController
       redirect_to bookings_path(@booking)
     else
       render "venues/show"
-   end
+    end
 
   end
 
