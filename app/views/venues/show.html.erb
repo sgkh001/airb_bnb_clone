@@ -11,9 +11,7 @@
   <button><%= link_to "<--- BACK TO ALL VENUES", venues_path%></button>
    <!-- if user is an owner of venues to display the buttons below-->
   <!-- button edit, show bookings, delte for owner-->
-  <% if user_signed_in? %>
-  <button><%= link_to "<---SHOW BOOKINGS-->", bookings_path%></button>
-  <% end %>
+
   <!-- else user will only see the button book venue-->
   <!-- button book venues for users who are not owner-->
 <% if user_signed_in? && current_user.owner == false || user_signed_in? == false %>
@@ -26,17 +24,29 @@
   <button><%= link_to "Edit", edit_venue_path(@venue)%></button>
 <% end %>
 </div>
-
 <div class="container">
+<br>
 <hr>
-<h1> I WANT TO DISPLAY MY REVIEWS FOR THIS VENUE HERE</h1>
-  <hr>
-  BOOK <%= @venue.name  %>
-  <hr>
-  <%= simple_form_for [@venue, @booking] do |f| %>
-    <%= f.input :date %>
-    <%= f.input :time_frame %>
-    <%= f.input :number_of_guest %>
-    <%= f.submit %>
+<!--only users can submit a review-->
+<% unless current_user.owner %>
+<div class="div container">
+  <%= simple_form_for [ @venue, @review ] do |f| %>
+    <%= f.input :comment %>
+    <%= f.input :rating %>
+    <%= f.submit "Submit review", class: "btn btn-gradient" %>
   <% end %>
+</div>
+<% end %>
+<br>
+   <!--a venue has many reviews-->
+<h1> REVIEWS </h1>
+   <% @venue.reviews.each do |review| %>
+    <%= review.comment %>
+    <%= review.rating %>
+      <% if review.user == current_user %>
+        <p> i created the review</p>
+        <button> DELETE REVIEW </button>
+      <% end %>
+    <hr>
+   <% end %>
 </div>

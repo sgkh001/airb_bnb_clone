@@ -31,8 +31,8 @@ class VenuesController < ApplicationController
 
   def show
     @venue = Venue.find(params[:id])
-    @booking = Booking.new
-    @booking.venue = @venue
+    @review = Review.new
+    @review.venue = @venue
   end
 
   def destroy

@@ -21,3 +21,7 @@
 <%= link_to "ADD A VENUE", new_venue_path(@venue)%>
 <% end %>
 </div>
+
+<% if user_signed_in? %>
+  <button><%= link_to "<---SHOW BOOKINGS-->", bookings_path%></button>
+<% end %>

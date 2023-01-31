@@ -1,10 +1,7 @@
 class ReviewsController < ApplicationController
-  # We need to find the venue associated with the review
   before_action :set_venue, only: %i[new create]
 
   def new
-    # We need @restaurant in our `simple_form_for`
-    @venue = Venue.find(params[:venue_id])
     @review = Review.new
   end
 
@@ -29,5 +26,4 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:comment, :rating)
   end
-
 end

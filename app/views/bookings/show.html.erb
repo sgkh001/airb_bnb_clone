@@ -3,6 +3,7 @@ USER BOOKING IS DISABLED WITH NO BUTTONS
 USER BOOKING IS DISABLED WITH 2 BUTTONS, 1-> confirm - green badge, 2-> cancel-warning/danger badge
 </h1>
 <hr>
+<div class="container">
 <!-- disabled-->
 <p> booking id <%= @booking.id %> </p>
 <p>user_id  <%= @booking.user_id %> </p>
@@ -14,5 +15,6 @@ USER BOOKING IS DISABLED WITH 2 BUTTONS, 1-> confirm - green badge, 2-> cancel-w
   <button> confirm</button>
   <button> cancel</button>
 <% end %>
-
-<%= link_to "BACK", bookings_path  %>
+<button> ADD REVIEW </button>
+<button> <%= link_to "<--BACK TO BOOKINGS", bookings_path  %> </button>
+</div>
