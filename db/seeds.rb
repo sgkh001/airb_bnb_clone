@@ -6,11 +6,16 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
-
-30.times do
-  venue = Venue.new(
+Venue.destroy_all
+50.times do
+  Venue.create(
+    user_id: rand(1..3),
     name: Faker::Company.name,
-    rating: rand(0..5)
+    rating: rand(0..5),
+    address: Faker::Address.full_address,
+    capacity: Faker::Number.within(range: 50..200),
+    description: Faker::Lorem.paragraphs,
+    price: Faker::Number.within(range: 550..2500),
+    contact_number: Faker::PhoneNumber.phone_number
   )
-  venue.save
 end

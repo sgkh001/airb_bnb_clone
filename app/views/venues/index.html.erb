@@ -3,7 +3,7 @@
 business needs for now and the future!</h1>
 </div>
 
-<%= form_with url: venues_path, method: :get, class: "d-flex my-3" do %>
+<%= form_with url: venues_path, method: :get, class: "d-flex my-3 p-3 mx-auto" do %>
   <%= text_field_tag :query,
     params[:query],
     class: "form-control",
@@ -17,11 +17,12 @@ business needs for now and the future!</h1>
 <div class="cards">
   <% @venues.each do |venue| %>
   <div class="card">
-  <div class="card-image"> <img src="/home/manu/code/manu1601/airb_bnb_clone/app/assets/images/seven coworking1.jpg" alt="Venue"></div>
+  <div class="card-image"> <img src="../assets/seven_coworking" alt="Venue"></div>
   <div class="card-info">
    <h3><%venue.name%></h3>
     <li><%= link_to venue.name, venue_path(venue) %></li>
-    <p><%=venue.price%></p>
+    <p class="price-font"><%=venue.price%></p>
+    <p><%=venue.rating%></p>
     </div>
     </div>
   <% end %>
