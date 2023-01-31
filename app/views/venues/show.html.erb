@@ -1,21 +1,52 @@
-<div class= showpage>
-<h1><%= @venue.name %></h1>
-<p><%= @venue.address %></p>
-<p><%= @venue.price %></p>
-<p><%= @venue.description %></p>
-<p><%= @venue.capacity %></p>
-<p><%= @venue.contact_number %></p>
+<div class="container">
+  <h1><%= @venue.name %></h1>
+  <p>Address: <%= @venue.address %></p>
+  <p> Price: <%= @venue.price %></p>
+  <p> Description: <%= @venue.description %></p>
+  <p>capacity: <%= @venue.capacity %></p>
+  <p>contact_number: <%= @venue.contact_number %></p>
 
-<li><%= link_to "Back", venues_path(@venue) %></li>
+  <!-- button back to all venues all users-->
+  <button><%= link_to "<--- BACK TO ALL VENUES", venues_path%></button>
+   <!-- if user is an owner of venues to display the buttons below-->
+  <!-- button edit, show bookings, delte for owner-->
 
-<%= link_to "Delete",
-  venue_path(@venue),
-  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-%>
-
-<%= simple_form_for [@venue, @booking] do |f| %>
-  <%= f.input :date %>
-  <%= f.input :time_frame %>
-  <%= f.input :number_of_guest %>
-  <%= f.submit %>
+  <!-- else user will only see the button book venue-->
+  <!-- button book venues for users who are not owner-->
+<% if user_signed_in? && current_user.owner == false || user_signed_in? == false %>
+  <button><%= link_to "BOOK VENUE", new_venue_booking_path(@venue, @booking)%></button>
+<% else %>
+  <button><%= link_to "Delete",
+    venue_path(@venue),
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+  %></button>
+  <button><%= link_to "Edit", edit_venue_path(@venue)%></button>
 <% end %>
+</div>
+<div class="container">
+<br>
+<hr>
+<!--only users can submit a review-->
+<% unless current_user.owner %>
+<div class="div container">
+  <%= simple_form_for [ @venue, @review ] do |f| %>
+    <%= f.input :comment %>
+    <%= f.input :rating %>
+    <%= f.submit "Submit review", class: "btn btn-gradient" %>
+  <% end %>
+</div>
+<% end %>
+<hr>
+<br>
+   <!--a venue has many reviews-->
+<h1> REVIEWS </h1>
+   <% @venue.reviews.each do |review| %>
+    <p> <%= review.user.username %> </p>
+    <p> Comment: <%= review.comment %> </p>
+    <p> Rating: <%= review.rating %> </p>
+      <% if review.user == current_user %>
+        <button> <%= link_to "DELETE REVIEW", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %> </button>
+      <% end %>
+    <hr>
+   <% end %>
+</div>
