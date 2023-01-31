@@ -26,8 +26,9 @@
 <div class="container">
 <br>
 <hr>
-<!--only users can submit a review-->
-<% unless current_user.owner %>
+
+<!--only users can submit a review -->
+<%if user_signed_in? && current_user.owner == false %>
 <div class="div container">
   <%= simple_form_for [ @venue, @review ] do |f| %>
     <%= f.input :comment %>
@@ -36,6 +37,7 @@
   <% end %>
 </div>
 <% end %>
+
 <hr>
 <br>
    <!--a venue has many reviews-->
