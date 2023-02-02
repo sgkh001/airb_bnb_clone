@@ -29,19 +29,33 @@
 <div class="container">
 <br>
 <hr>
-<!--only users can submit a review-->
-<% unless current_user.owner %>
-<div class="div container">
-<h1>Add a review </h1>
-  <%= simple_form_for [ @venue, @review ] do |f| %>
-    <%= f.input :comment %>
-    <%= f.input :rating %>
-    <%= f.submit "Submit review", class: "btn btn-gradient" %>
-  <% end %>
-</div>
+<% if user_signed_in? && current_user.owner == false %>
+  <h1> only users can submit a review </h1>
+  <div class="div container">
+  <h1>Add a review </h1>
+    <%= simple_form_for [ @venue, @review ] do |f| %>
+      <%= f.input :comment %>
+      <%= f.input :rating %>
+      <%= f.submit "Submit review", class: "btn btn-gradient" %>
+    <% end %>
+  </div>
+<% else %>
+   <h1> you cannot add a review</h1>
+<% end %>
+<!--only users can submit a review
+<%if current_user %>
+  <div class="div container">
+  <h1>Add a review </h1>
+    <%= simple_form_for [ @venue, @review ] do |f| %>
+      <%= f.input :comment %>
+      <%= f.input :rating %>
+      <%= f.submit "Submit review", class: "btn btn-gradient" %>
+    <% end %>
+  </div>
 <% end %>
 <hr>
 <br>
+-->
    <!--a venue has many reviews-->
 <h1><strong> Reviews </h1></strong>
    <% @venue.reviews.each do |review| %>
