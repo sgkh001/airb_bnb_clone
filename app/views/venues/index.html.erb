@@ -3,7 +3,8 @@
 business needs for now and the future!</h1>
 </div>
 
-<%= form_with url: venues_path, method: :get, class: "d-flex my-3 p-3 mx-auto" do %>
+<div class="search-bar">
+<%= form_with url: venues_path, method: :get, class: "d-flex p-4" do %>
   <%= text_field_tag :query,
     params[:query],
     class: "form-control",
@@ -11,6 +12,7 @@ business needs for now and the future!</h1>
   %>
   <%= submit_tag "Search", class: "btn btn-primary" %>
 <% end %>
+</div>
 
 <div class="container-fluid">
 <ul>
@@ -24,6 +26,7 @@ business needs for now and the future!</h1>
    <h3><%venue.name%></h3>
     <li><%= link_to venue.name, venue_path(venue) %></li>
     <p class="price-font"><%=venue.price%>€</p>
+    <p><%=venue.rating%><i class="fa-regular fa-star"></i></p>
     </div>
     </div>
   <% end %>

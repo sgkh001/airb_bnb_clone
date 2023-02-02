@@ -11,7 +11,7 @@ Venue.destroy_all
   Venue.create(
     user_id: rand(1..3),
     name: Faker::Company.name,
-    rating: rand(0..5),
+    rating: rand(1..5),
     address: Faker::Address.full_address,
     capacity: Faker::Number.within(range: 50..200),
     description: Faker::Lorem.paragraphs,

@@ -32,7 +32,7 @@
 <!--only users can submit a review-->
 <% unless current_user.owner %>
 <div class="div container">
-<h1>Add a review </h1>
+<h2>Add a review </h2>
   <%= simple_form_for [ @venue, @review ] do |f| %>
     <%= f.input :comment %>
     <%= f.input :rating %>
@@ -43,7 +43,7 @@
 <hr>
 <br>
    <!--a venue has many reviews-->
-<h1><strong> Reviews </h1></strong>
+<h1> Reviews </h1>
    <% @venue.reviews.each do |review| %>
     <p> <%= review.user.username %> </p>
     <p> Comment: <%= review.comment %> </p>

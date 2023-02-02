@@ -1,15 +1,31 @@
 .header{
   text-align: center;
+  background-color: white;
   h1{
     font-weight: bold;
   color: darkslategrey;
+  margin-bottom: 0.05rem;
   }
+}
+
+.fa-regular{
+  color: gold;
+  margin-left: 5px;
+}
+
+.container-fluid{
+  background-color: white;
+}
+
+.search-bar{
+  background-color: white;
 }
 
 .cards{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 15px;
+  background-color: white;
   .card{
     margin-top: 30px;
     margin-bottom: 20px;
@@ -20,7 +36,6 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-
   }
 
   .card-image{
