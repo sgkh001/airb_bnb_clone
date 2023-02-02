@@ -15,21 +15,33 @@ business needs for now and the future!</h1>
 <div class="container-fluid">
 <ul>
 <div class="cards">
+
+<% if user_signed_in? && current_user.owner == false || user_signed_in? == false %>
   <% @venues.each do |venue| %>
   <div class="card">
-  <div class="card-image"> <img src="../assets/seven_coworking" alt="Venue"></div>
+  <div class="card-image"> <img src="../assets/Coming-Soon" alt="Venue"></div>
   <div class="card-info">
    <h3><%venue.name%></h3>
     <li><%= link_to venue.name, venue_path(venue) %></li>
     <p class="price-font"><%=venue.price%></p>
-    <p><%=venue.rating%></p>
     </div>
     </div>
+  <% end %>
+  <% else %>
+  <% @venues.select do |venue| %>
+    <% if venue.user_id == current_user.id  %>
+      <%= link_to venue.name, venue_path(venue)  %>
+      <p> <%= venue.address %> </p>
+      <p><%= venue.price%> </p>
+    <% end %>
   <% end %>
   </div>
 </ul>
 </div>
 
+<%= link_to "Add a Venue", new_venue_path(@venue), class: "btn btn-primary" %>
+<% end %>
+
 <% if user_signed_in? %>
-  <button><%= link_to "<---SHOW BOOKINGS-->", bookings_path%></button>
+<%= link_to "Show Bookings", bookings_path, class: "btn btn-primary"%>
 <% end %>
