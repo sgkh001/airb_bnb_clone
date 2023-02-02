@@ -1,49 +1,55 @@
 <div class="header">
-<h1>Find a space designed to suit your
+  <h1>Find a space designed to suit your
 business needs for now and the future!</h1>
 </div>
 
 <div class="search-bar">
-<%= form_with url: venues_path, method: :get, class: "d-flex p-4" do %>
-  <%= text_field_tag :query,
+  <%= form_with url: venues_path, method: :get, class: "d-flex p-4" do %>
+    <%= text_field_tag :query,
     params[:query],
     class: "form-control",
-    placeholder: "Find a venue"
-  %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
-<% end %>
+    placeholder: "Find a venue"%>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
 </div>
 
-<div class="container-fluid">
-<ul>
-<div class="cards">
+<% if user_signed_in? %>
+<%= link_to "My Bookings", bookings_path(@booking), class: "btn btn-gradient mx-4"%>
+<% end %>
 
-<% if user_signed_in? && current_user.owner == false || user_signed_in? == false %>
-  <% @venues.each do |venue| %>
+
+<div class="container-fluid">
+  <ul>
+    <div class="cards">
+    <% if user_signed_in? && current_user.owner == false || user_signed_in? == false %>
+    <% @venues.each do |venue| %>
   <div class="card">
-  <div class="card-image"> <img src="../assets/Coming-Soon" alt="Venue"></div>
+    <div class="card-image"> <img src="../assets/Coming-Soon" alt="Venue"></div>
   <div class="card-info">
-   <h3><%venue.name%></h3>
-    <li><%= link_to venue.name, venue_path(venue) %></li>
-    <p class="price-font"><%=venue.price%>€</p>
-    <p><%=venue.rating%><i class="fa-regular fa-star"></i></p>
-    </div>
-    </div>
-  <% end %>
-  <% else %>
-  <% @venues.select do |venue| %>
-    <% if venue.user_id == current_user.id  %>
-      <%= link_to venue.name, venue_path(venue)  %>
-      <p><%= venue.price%>€</p>
-    <% end %>
-  <% end %>
+    <h3><%venue.name%></h3>
+      <li><%= link_to venue.name, venue_path(venue) %></li>
+        <p class="price-font"><%=venue.price%>€</p>
+        <p><%=venue.rating%><i class="fa-regular fa-star"></i></p>
   </div>
+  </div>
+    <% end %>
+  </div>
+
+    <% else %>
+  <div class="card">
+    <% @venues.select do |venue| %>
+    <div class="card-image"><img src="../assets/Coming-Soon" alt="Venue"></div>
+    <div class="card-info">
+      <% if venue.user_id == current_user.id  %>
+        <%= link_to venue.name, venue_path(venue)  %>
+        <p><%= venue.price%>€</p>
+        <p><%=venue.rating%><i class="fa-regular fa-star"></i></p>
+      <% end %>
+    </div>
+    </div>
+  <% end %>
 </ul>
 </div>
 
 <%= link_to "Add a Venue", new_venue_path(@venue), class: "btn btn-gradient" %>
-<% end %>
-
-<% if user_signed_in? %>
-<%= link_to "Show Bookings", bookings_path(@booking), class: "btn btn-gradient"%>
 <% end %>

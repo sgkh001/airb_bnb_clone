@@ -44,7 +44,7 @@
 <br>
    <!--a venue has many reviews-->
 <h1> Reviews </h1>
-   <% @venue.reviews.each do |review| %>
+    <% @venue.reviews.each do |review| %>
     <p> <%= review.user.username %> </p>
     <p> Comment: <%= review.comment %> </p>
     <p> Rating: <%= review.rating %> </p>
@@ -52,5 +52,5 @@
         <%= link_to "Delete Review", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-primary" %>
       <% end %>
     <hr>
-   <% end %>
+  <% end %>
 </div>
