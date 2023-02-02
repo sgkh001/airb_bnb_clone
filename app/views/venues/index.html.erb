@@ -23,7 +23,7 @@ business needs for now and the future!</h1>
   <div class="card-info">
    <h3><%venue.name%></h3>
     <li><%= link_to venue.name, venue_path(venue) %></li>
-    <p class="price-font"><%=venue.price%></p>
+    <p class="price-font"><%=venue.price%>€</p>
     </div>
     </div>
   <% end %>
@@ -31,17 +31,16 @@ business needs for now and the future!</h1>
   <% @venues.select do |venue| %>
     <% if venue.user_id == current_user.id  %>
       <%= link_to venue.name, venue_path(venue)  %>
-      <p> <%= venue.address %> </p>
-      <p><%= venue.price%> </p>
+      <p><%= venue.price%>€</p>
     <% end %>
   <% end %>
   </div>
 </ul>
 </div>
 
-<%= link_to "Add a Venue", new_venue_path(@venue), class: "btn btn-primary" %>
+<%= link_to "Add a Venue", new_venue_path(@venue), class: "btn btn-gradient" %>
 <% end %>
 
 <% if user_signed_in? %>
-<%= link_to "Show Bookings", bookings_path, class: "btn btn-primary"%>
+<%= link_to "Show Bookings", bookings_path(@booking), class: "btn btn-gradient"%>
 <% end %>
