@@ -1,56 +1,31 @@
-<!-- disabled
 <div class="container">
-<h1>BOOKING STATUS</h1>
-<% venue_id = @booking.venue_id %>
-<% venue= Venue.find(venue_id)  %>
-<p> VENUE BOOKED <%= venue.name %> </p>
-<% user_id = @booking.user_id %>
-<% user = User.find(user_id) %>
-<p> BOOKING DONE BY : <%= user.first_name%> <%= user.last_name  %> </p>
-<p> DATE BOOKED FOR : <%= @booking.date %> </p>
-<p>TIME BOOKED FOR :<%= @booking.time_frame%> </p>
-
-<% if current_user.owner %>
-  <button> confirm</button>
-  <button> cancel</button>
-<% else %>
-  <button> ADD REVIEW </button>
-<% end %>
-<%= link_to "<--BACK TO BOOKINGS", bookings_path, class: "btn btn-primary"  %>
-</div>
--->
-<!-- *** remember to keep the BOOKING STATUS BUTTON when updating the booking show page *** -->
-<div class="container">
-  <div class="card"
-      data-controller="hello"
-      data-hello-target="color">
-    <h5 class="card-header"
-        data-hello-target="text">
-        BOOKING STATUS</h5>
+  <div class="card">
+    <h5 class="card-header"> BOOKING STATUS </h5>
     <div class="card-body">
-      <% venue_id = @booking.venue_id %>
-      <% venue= Venue.find(venue_id)  %>
+        <% venue_id = @booking.venue_id %>
+        <% venue= Venue.find(venue_id)  %>
       <h5 class="card-title">VENUE BOOKED <%= venue.name %></h5>
-      <% user_id = @booking.user_id %>
-      <% user = User.find(user_id) %>
+        <% user_id = @booking.user_id %>
+        <% user = User.find(user_id) %>
       <p class="card-text">BOOKING DONE BY : <%= user.first_name%> <%= user.last_name  %></p>
       <p class="card-text">DATE BOOKED FOR : <%= @booking.date %> </p>
       <p class="card-text">TIME BOOKED FOR :<%= @booking.time_frame%> </p>
-      <% if current_user.owner %>
-        <button class = "btn btn-success"
-                data-hello-target="confirm"
-                data-action="click->hello#confirm">
-                confirm booking</button>
-        <button class = "btn btn-danger"
-                data-hello-target="cancel"
-                data-action="click->hello#cancel">
-                cancel booking</button>
-      <% else %>
-        <button> ADD REVIEW </button>
-      <% end %>
+      <p> Booking status :<%if @booking.bookingstatus %>
+                            <p> BOOKING CONFIRMED </p>
+                          <% else %>
+                            <p> BOOKING CANCELLED </P>
+                          <% end %>
+      </p>
+        <% if current_user.owner %>
+        <%= link_to "confirm booking", confirm_path(@booking) %>
+        <%= link_to "cancel booking", cancel_path(@booking) %>
+        <% else %>
+      <button> ADD REVIEW </button>
+        <% end %>
     </div>
   </div>
 </div>
+
     <div class="d-flex justify-content-center">
-    <%= link_to "<--BACK TO BOOKINGS", bookings_path, class: "btn btn-primary"  %>
+    <%= link_to "BACK TO BOOKINGS", bookings_path, class: "btn btn-primary m-3"  %>
     </div>
