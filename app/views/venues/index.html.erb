@@ -29,3 +29,7 @@ business needs for now and the future!</h1>
   </div>
 </ul>
 </div>
+
+<% if user_signed_in? %>
+  <button><%= link_to "<---SHOW BOOKINGS-->", bookings_path%></button>
+<% end %>
