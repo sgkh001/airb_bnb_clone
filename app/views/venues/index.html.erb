@@ -1,27 +1,46 @@
-<div class="container">
-<h1> VENUES </h1>
-<hr>
+<div class="header">
+<h1>Find a space designed to suit your
+business needs for now and the future!</h1>
+</div>
+
+<%= form_with url: venues_path, method: :get, class: "d-flex my-3 p-3 mx-auto" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a venue"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+
+<div class="container-fluid">
+<ul>
+<div class="cards">
+
 <% if user_signed_in? && current_user.owner == false || user_signed_in? == false %>
   <% @venues.each do |venue| %>
-    <%= link_to venue.name, venue_path(venue)  %>
-  <hr>
+  <div class="card">
+  <div class="card-image"> <img src="../assets/Coming-Soon" alt="Venue"></div>
+  <div class="card-info">
+   <h3><%venue.name%></h3>
+    <li><%= link_to venue.name, venue_path(venue) %></li>
+    <p class="price-font"><%=venue.price%>€</p>
+    </div>
+    </div>
   <% end %>
-<% else %>
+  <% else %>
   <% @venues.select do |venue| %>
     <% if venue.user_id == current_user.id  %>
       <%= link_to venue.name, venue_path(venue)  %>
-      <p> <%= venue.address %> </p>
-      <p><%= venue.price%> </p>
-      <p> <%= venue.contact_number %> </p>
-      <p> <%= venue.capacity%> </p>
-      <p><%= venue.description%> </p>
-    <hr>
+      <p><%= venue.price%>€</p>
     <% end %>
   <% end %>
-<%= link_to "ADD A VENUE", new_venue_path(@venue)%>
-<% end %>
+  </div>
+</ul>
 </div>
 
+<%= link_to "Add a Venue", new_venue_path(@venue), class: "btn btn-gradient" %>
+<% end %>
+
 <% if user_signed_in? %>
-  <button><%= link_to "<---SHOW BOOKINGS-->", bookings_path%></button>
+<%= link_to "Show Bookings", bookings_path(@booking), class: "btn btn-gradient"%>
 <% end %>
