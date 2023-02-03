@@ -24,6 +24,7 @@ business needs for now and the future!</h1>
    <h3><%venue.name%></h3>
     <li><%= link_to venue.name, venue_path(venue) %></li>
     <p class="price-font"><%=venue.price%>€</p>
+    <p><%= venue.rating%><i class="fa-regular fa-star"></i></p>
     </div>
     </div>
   <% end %>
@@ -32,6 +33,7 @@ business needs for now and the future!</h1>
     <% if venue.user_id == current_user.id  %>
       <%= link_to venue.name, venue_path(venue)  %>
       <p><%= venue.price%>€</p>
+      <p><%= venue.rating%><i class="fa-regular fa-star"></i></p>
     <% end %>
   <% end %>
   </div>
