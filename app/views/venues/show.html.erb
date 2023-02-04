@@ -1,5 +1,7 @@
 <div class="container">
-  <div><img src="../assets/Coming-Soon" class="img-fluid img-thumbnail" alt="Venue"></div>
+  <div>
+    <img src="<%= @venue.photo %>" class="img-fluid img-thumbnail" alt="Venue">
+  </div>
   <div class="venue-info">
     <h1><strong><%= @venue.name %></strong></h1>
     <p><i class="fa-solid fa-location-dot"></i><strong>Address:</p></strong> <p><%= @venue.address %></p>
@@ -31,15 +33,19 @@
 <div class="review-container">
 <br>
 <hr>
-
-<!--only users can submit a review -->
-<%if user_signed_in? && current_user.owner == false %>
-<div class="div container">
+<div class="add-a-review">
+  <h1>Add a review</h1>
+  <!--only users can submit a review -->
+  <%if user_signed_in? && current_user.owner == false %>
+  <div class="div container comment-box">
   <%= simple_form_for [ @venue, @review ] do |f| %>
-    <%= f.input :comment %>
+    <div class="comment-box">
+      <%= f.input :comment %>
+    </div>
     <%= f.input :rating %>
     <%= f.submit "Submit review", class: "btn btn-gradient" %>
   <% end %>
+  </div>
 </div>
 <% end %>
 
@@ -47,14 +53,16 @@
 <br>
 
    <!--a venue has many reviews-->
-<h1><strong> Reviews </h1></strong>
+<div class="review">
+<h2>Reviews </h2>
    <% @venue.reviews.each do |review| %>
     <p> <%= review.user.username %> </p>
     <p> Comment: <%= review.comment %> </p>
     <p> Rating: <%= review.rating %> </p>
       <% if review.user == current_user %>
-        <%= link_to "Delete Review", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-primary" %>
+        <%= link_to "Delete Review", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-gradient" %>
       <% end %>
     <hr>
+    </div>
    <% end %>
 </div>
