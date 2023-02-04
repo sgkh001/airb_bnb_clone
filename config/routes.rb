@@ -5,9 +5,17 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  resources :venues
   resources :venues do
-    resources :reviews, only: [:index, :new, :create, :show]
-    resources :bookings, except: [:index]
-  end
-  resources :bookings, only: [:index]
+    # we need a venue id to create(new), read(one), delete a booking
+    resources :bookings, only: [:new, :create]
+      # we need a booking id to create(new), read(one), delete a review
+    resources :reviews, only: [:new, :create]
+    end
+
+  # bookings index(read all) doesn't need a venue id
+  resources :bookings, only: [:index, :destroy, :show]
+
+  # reviews index(read all) doesn't need a venue id
+  resources :reviews, only: [:destroy]
 end

@@ -1,8 +1,25 @@
-<h1>Booking</h1>
-
-<%= simple_form_for[@booking] do |f| %>
-  <%= f.input :date %>
-  <%= f.input :time_frame %>
-  <%= f.input :number_of_guest %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <h1>Booking  <%= @venue.name%></h1>
+  <%= simple_form_for [@venue, @booking] do |f| %>
+    <%= f.input :date %>
+    <%= f.input :time_frame %>
+    <%= f.input :number_of_guest %>
+    <!-- to ask if we need to add the details below in the schema-->
+    <hr>
+    <div class="card category">
+     <h4> Pay with debit or credit card</h4>
+    </div>
+    <hr>
+    <h4> Card number</h4>
+    <hr>
+    <h4> Expiration date</h4>
+    <hr>
+    <h4> Street address</h4>
+    <hr>
+    <h4> City</h4>
+    <hr>
+    <%= f.submit %>
+  <% end %>
+  <hr>
+  <button> <%= link_to "EXIT BOOKING", venue_path(@venue)%> </button>
+</div>
