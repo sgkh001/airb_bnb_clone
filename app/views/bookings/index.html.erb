@@ -1,68 +1,73 @@
-<div class="container">
-<<<<<<< HEAD
-=======
-<%= link_to"Back to venues", venues_path, class: "btn btn-primary"  %>
-<h1>BOOKINGS</h1>
->>>>>>> 1d2009d255ceba6db6de8fb53d7f10d009952cdb
-<hr>
-<hr>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.peerspace.com/resources/wp-content/uploads/2018/05/vfhik8o2ifudxhhvxhfn.jpg);">
+  <div class="container">
+    <h1 class="text-center"> <strong> YOUR BOOKINGS</strong>!</h1>
+  </div>
+</div>
+
 <% if current_user.owner? %>
   <% owner = current_user.id %>
   <% owner_venue = Venue.where(user_id: owner)  %>
   <% bookings =  Booking.where(venue_id: owner_venue) %>
   <% bookings.each do |booking| %>
-<<<<<<< HEAD
-  <div class="card">
-    <% booking.venue_id %>
-=======
-   <% booking.venue_id %>
->>>>>>> 1d2009d255ceba6db6de8fb53d7f10d009952cdb
-    <% venue =  Venue.find(booking.venue_id) %>
-    <p> VENUE BOOKED <%= venue.name %> </p>
-    <hr>
-    <% user_id = booking.user_id %>
-    <% user = User.find(user_id) %>
-    <p>BOOKING DONE BY : <%= user.first_name %> <%= user.last_name %>
-    <hr>
-    <p> TIME BOOKED FOR <%= booking.time_frame %> </p>
-    <hr>
-    <p> DATE BOOKED FOR <%= booking.date %> </p>
-     <p> Booking status :<%if booking.bookingstatus %>
-                            <p> BOOKING CONFIRMED </p>
-                          <% else %>
-                            <p> BOOKING CANCELLED </P>
-                          <% end %>
-      </p>
-    <%= link_to "confirm booking", confirm_path(booking), class: "btn btn-primary" %>
-    <%= link_to "cancel booking", cancel_path(booking), class: "btn btn-primary" %>
-    <hr>
-    <hr>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <div class="card m-5 w-100 shadow-lg p-3 bg-body rounded border-0">
+          <% booking.venue_id %>
+          <% venue =  Venue.find(booking.venue_id) %>
+          <div class="card-header">
+            <p> VENUE BOOKED <%= venue.name %> </p>
+          </div>
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <% user_id = booking.user_id %>
+              <% user = User.find(user_id) %>
+              <p>BOOKING DONE BY : <%= user.first_name %> <%= user.last_name %>
+              <p> TIME BOOKED FOR <%= booking.time_frame %> </p>
+              <p> DATE BOOKED FOR <%= booking.date %> </p>
+              <p> Booking status :<%if booking.bookingstatus %>
+                                      <p> BOOKING CONFIRMED </p>
+                                    <% else %>
+                                      <p> BOOKING CANCELLED </P>
+                                    <% end %>
+                </p>
+              <%= link_to "confirm booking", confirm_path(booking), class: "btn btn-primary" %>
+              <%= link_to "cancel booking", cancel_path(booking), class: "btn btn-primary" %>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <% end %>
 <% else %>
   <% user = current_user.id %>
   <% bookings = Booking.where(user_id: user) %>
   <% bookings.each do |booking| %>
-    <% booking.venue_id %>
-    <% venue =  Venue.find(booking.venue_id) %>
-    <p> VENUE BOOKED : <%= venue.name %> </p>
-    <hr>
-    <p>TIME BOOKED FOR: <%= booking.time_frame %> </p>
-    <hr>
-    <p>DATE BOOKED FOR: <%= booking.date %> </p>
-    <p> Booking status :<%if booking.bookingstatus %>
-                            <p> BOOKING CONFIRMED </p>
-                          <% else %>
-                            <p> BOOKING CANCELLED </P>
-                          <% end %>
-    </p>
-     <button> <%= link_to "ADD REVIEW", venue_path(booking.venue_id)  %> </button>
-    <hr>
-    <hr>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-10">
+          <div class="card m-5 shadow-lg p-3 bg-body rounded border-0 w-100">
+            <% booking.venue_id %>
+             <% venue =  Venue.find(booking.venue_id) %>
+            <div class="card-header">
+            <p> VENUE BOOKED <%= venue.name %> </p>
+          </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  <p>TIME BOOKED FOR: <%= booking.time_frame %> </p>
+                  <p>DATE BOOKED FOR: <%= booking.date %> </p>
+                  <p> Booking status :<%if booking.bookingstatus %>
+                                      <p> BOOKING CONFIRMED </p>
+                                    <% else %>
+                                      <p> BOOKING CANCELLED </P>
+                                    <% end %>
+                  <%= link_to "ADD REVIEW", venue_path(booking.venue_id), class: "btn btn-primary"%>
+                </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
 <% end %>
-<<<<<<< HEAD
-</div>
-
-<button> <%= link_to"<--Back to venues", venues_path  %> </button>
-=======
->>>>>>> 1d2009d255ceba6db6de8fb53d7f10d009952cdb
