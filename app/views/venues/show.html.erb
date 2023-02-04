@@ -1,32 +1,34 @@
 <div class="container">
-
-<img src="../assets/Coming-Soon" class="img-fluid img-thumbnail" alt="Venue">
-  <div>
-  <h1><strong><%= @venue.name %></strong></h1>
-  <p><strong>Address:</p></strong> <p><%= @venue.address %></p>
-  <p><strong> Price:</p></strong> <p> <%= @venue.price %>€</p>
-  <p><strong> Description:</p></strong> <p> <%= @venue.description %></p>
-  <p><strong>Capacity:</p></strong> <p> <%= @venue.capacity %></p>
-  <p><strong>Contact number:</p></strong> <p> <%= @venue.contact_number %></p>
+  <div><img src="../assets/Coming-Soon" class="img-fluid img-thumbnail" alt="Venue"></div>
+  <div class="venue-info">
+    <h1><strong><%= @venue.name %></strong></h1>
+    <p><i class="fa-solid fa-location-dot"></i><strong>Address:</p></strong> <p><%= @venue.address %></p>
+    <p><strong> Price:</p></strong> <p> <%= @venue.price %>€</p>
+    <p><strong> Description:</p></strong> <p> <%= @venue.description %></p>
+    <p><i class="fa-solid fa-people-line"></i><strong>Capacity:</p></strong> <p> <%= @venue.capacity %></p>
+    <p><i class="fa-solid fa-phone-volume"></i><strong>Contact number:</p></strong> <p> <%= @venue.contact_number %></p>
   </div>
-  <!-- button back to all venues all users-->
-  <%= link_to "Back to all venues", venues_path, class: "btn btn-gradient"%>
-   <!-- if user is an owner of venues to display the buttons below-->
-  <!-- button edit, show bookings, delete for owner-->
-
-  <!-- else user will only see the button book venue-->
-  <!-- button book venues for users who are not owner-->
-<% if user_signed_in? && current_user.owner == false || user_signed_in? == false %>
-<%= link_to "Book venue", new_venue_booking_path(@venue, @booking), class: "btn btn-gradient"%>
-<% else %>
-  <%= link_to "Delete",
-    venue_path(@venue),
-    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-gradient"
-  %>
-  <%= link_to "Edit", edit_venue_path(@venue), class: "btn btn-gradient"%>
-<% end %>
 </div>
-<div class="container">
+
+<div class="show-btns">
+      <!-- button back to all venues all users-->
+      <%= link_to "Back to all venues", venues_path, class: "btn btn-gradient"%>
+      <!-- if user is an owner of venues to display the buttons below-->
+      <!-- button edit, show bookings, delete for owner-->
+
+      <!-- else user will only see the button book venue-->
+      <!-- button book venues for users who are not owner-->
+    <% if user_signed_in? && current_user.owner == false || user_signed_in? == false %>
+    <%= link_to "Book venue", new_venue_booking_path(@venue, @booking), class: "btn btn-gradient"%>
+    <% else %>
+    <%= link_to "Delete",
+    venue_path(@venue),
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-gradient"%>
+    <%= link_to "Edit", edit_venue_path(@venue), class: "btn btn-gradient"%>
+    <% end %>
+</div>
+
+<div class="review-container">
 <br>
 <hr>
 
@@ -43,7 +45,7 @@
 
 <hr>
 <br>
--->
+
    <!--a venue has many reviews-->
 <h1><strong> Reviews </h1></strong>
    <% @venue.reviews.each do |review| %>
