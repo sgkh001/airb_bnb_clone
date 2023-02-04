@@ -15,7 +15,8 @@ Rails.application.routes.draw do
 
   # bookings index(read all) doesn't need a venue id
   resources :bookings, only: [:index, :destroy, :show]
-
+  get "/confirm/:id", to: "bookings#confirm", as: "confirm"
+  get "/cancel/:id", to: "bookings#cancel", as: "cancel"
   # reviews index(read all) doesn't need a venue id
   resources :reviews, only: [:destroy]
 end
