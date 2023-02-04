@@ -1,9 +1,6 @@
-<div class="container">
-<<<<<<< HEAD
-=======
 <%= link_to"Back to venues", venues_path, class: "btn btn-primary"  %>
+
 <h1>BOOKINGS</h1>
->>>>>>> 1d2009d255ceba6db6de8fb53d7f10d009952cdb
 <hr>
 <hr>
 <% if current_user.owner? %>
@@ -11,21 +8,16 @@
   <% owner_venue = Venue.where(user_id: owner)  %>
   <% bookings =  Booking.where(venue_id: owner_venue) %>
   <% bookings.each do |booking| %>
-<<<<<<< HEAD
-  <div class="card">
     <% booking.venue_id %>
-=======
-   <% booking.venue_id %>
->>>>>>> 1d2009d255ceba6db6de8fb53d7f10d009952cdb
     <% venue =  Venue.find(booking.venue_id) %>
     <p> VENUE BOOKED <%= venue.name %> </p>
-    <hr>
+
     <% user_id = booking.user_id %>
     <% user = User.find(user_id) %>
     <p>BOOKING DONE BY : <%= user.first_name %> <%= user.last_name %>
-    <hr>
+
     <p> TIME BOOKED FOR <%= booking.time_frame %> </p>
-    <hr>
+
     <p> DATE BOOKED FOR <%= booking.date %> </p>
      <p> Booking status :<%if booking.bookingstatus %>
                             <p> BOOKING CONFIRMED </p>
@@ -56,13 +48,21 @@
                           <% end %>
     </p>
      <button> <%= link_to "ADD REVIEW", venue_path(booking.venue_id)  %> </button>
+  <div class="card  border-dark mb-3" style="max-width: 50rem;">
+    <div class="card-body">
+      <h5 class="card-title">VENUE BOOKED : <%= venue.name %></h5>
+      <h6 class="card-subtitle mb-2 text-muted"> TIME BOOKED FOR: <%= booking.time_frame%></h6>
+      <h6 class="card-subtitle mb-2 text-muted"> DATE BOOKED FOR: <%= booking.date %> </h6>
+      <h6 class="card-subtitle mb-2 text-muted">  Booking status: <%if booking.bookingstatus %>
+                                                                      <h6> BOOKING CONFIRMED </h6>
+                                                                    <% else %>
+                                                                      <h6> BOOKING CANCELLED </h6>
+                                                                    <% end %>
+      </h6>
+      <button> <%= link_to "ADD REVIEW", venue_path(booking.venue_id)  %> </button>
+    </div>
+  </div>
     <hr>
     <hr>
   <% end %>
 <% end %>
-<<<<<<< HEAD
-</div>
-
-<button> <%= link_to"<--Back to venues", venues_path  %> </button>
-=======
->>>>>>> 1d2009d255ceba6db6de8fb53d7f10d009952cdb
