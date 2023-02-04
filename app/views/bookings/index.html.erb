@@ -1,9 +1,6 @@
 <div class="container">
-<<<<<<< HEAD
-=======
 <%= link_to"Back to venues", venues_path, class: "btn btn-primary"  %>
 <h1>BOOKINGS</h1>
->>>>>>> 1d2009d255ceba6db6de8fb53d7f10d009952cdb
 <hr>
 <hr>
 <% if current_user.owner? %>
@@ -11,12 +8,8 @@
   <% owner_venue = Venue.where(user_id: owner)  %>
   <% bookings =  Booking.where(venue_id: owner_venue) %>
   <% bookings.each do |booking| %>
-<<<<<<< HEAD
   <div class="card">
     <% booking.venue_id %>
-=======
-   <% booking.venue_id %>
->>>>>>> 1d2009d255ceba6db6de8fb53d7f10d009952cdb
     <% venue =  Venue.find(booking.venue_id) %>
     <p> VENUE BOOKED <%= venue.name %> </p>
     <hr>
@@ -60,9 +53,3 @@
     <hr>
   <% end %>
 <% end %>
-<<<<<<< HEAD
-</div>
-
-<button> <%= link_to"<--Back to venues", venues_path  %> </button>
-=======
->>>>>>> 1d2009d255ceba6db6de8fb53d7f10d009952cdb

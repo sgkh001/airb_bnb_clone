@@ -9,7 +9,7 @@ business needs for now and the future!</h1>
     class: "form-control",
     placeholder: "Find a venue"
   %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
+  <%= submit_tag "Search", class: "btn btn-gradient"%>
 <% end %>
 
 <div class="container-fluid">
@@ -21,9 +21,10 @@ business needs for now and the future!</h1>
   <div class="card">
   <div class="card-image"> <img src="../assets/Coming-Soon" alt="Venue"></div>
   <div class="card-info">
-   <h3><%venue.name%></h3>
+    <h3><%venue.name%></h3>
     <li><%= link_to venue.name, venue_path(venue) %></li>
     <p class="price-font"><%=venue.price%>€</p>
+    <p><%= venue.rating%><i class="fa-regular fa-star"></i></p>
     </div>
     </div>
   <% end %>
@@ -32,6 +33,7 @@ business needs for now and the future!</h1>
     <% if venue.user_id == current_user.id  %>
       <%= link_to venue.name, venue_path(venue)  %>
       <p><%= venue.price%>€</p>
+      <p><%= venue.rating%><i class="fa-regular fa-star"></i></p>
     <% end %>
   <% end %>
   </div>
@@ -40,8 +42,11 @@ business needs for now and the future!</h1>
 
 <%= link_to "Add a Venue", new_venue_path(@venue), class: "btn btn-gradient" %>
 <% end %>
+<<<<<<< HEAD
 
 <% if user_signed_in? %>
 <%= link_to "Show Bookings", bookings_path(@booking), class: "btn btn-gradient"%>
 <% end %>
 
+=======
+>>>>>>> 38843ac2e122061eafead543860bd50880073897
