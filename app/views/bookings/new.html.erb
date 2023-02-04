@@ -1,11 +1,14 @@
-  <h1>Booking  <%= @venue.name%></h1>
-  <%= simple_form_for [@venue, @booking] do |f| %>
-    <%= f.input :date %>
-    <%= f.input :time_frame %>
-    <%= f.input :number_of_guest %>
-    <!-- to ask if we need to add the details below in the schema-->
-    <hr>
-    <%= f.submit %>
-  <% end %>
-  <hr>
-  <button> <%= link_to "EXIT BOOKING", venue_path(@venue)%> </button>
+<h1 class= "text-center">Booking  <%= @venue.name%></h1>
+<div class="container-fluid shadow-lg p-3 mb-5 bg-body rounded">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <%= simple_form_for [@venue, @booking] do |f| %>
+              <%= f.input :date %>
+              <%= f.input :time_frame %>
+              <%= f.input :number_of_guest %>
+              <%= f.submit class: "btn btn-primary" %>
+              <%= link_to "EXIT BOOKING", venue_path(@venue), class: "btn btn-primary"%>
+            <% end %>
+    </div>
+  </div>
+</div>
