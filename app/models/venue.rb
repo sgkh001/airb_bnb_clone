@@ -8,4 +8,6 @@ class Venue < ApplicationRecord
   validates :price, presence: true
   validates :contact_number, presence: true
   validates :capacity, presence: true
+
+
 end
