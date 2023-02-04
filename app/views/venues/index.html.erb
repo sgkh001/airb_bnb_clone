@@ -42,7 +42,3 @@ business needs for now and the future!</h1>
 
 <%= link_to "Add a Venue", new_venue_path(@venue), class: "btn btn-gradient" %>
 <% end %>
-
-<% if user_signed_in? %>
-<%= link_to "Show Bookings", bookings_path(@booking), class: "btn btn-gradient"%>
-<% end %>

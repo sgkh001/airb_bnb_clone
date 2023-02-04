@@ -9,6 +9,8 @@
     <p><i class="fa-solid fa-phone-volume"></i><strong>Contact number:</p></strong> <p> <%= @venue.contact_number %></p>
   </div>
 </div>
+
+<div class="show-btns">
       <!-- button back to all venues all users-->
       <%= link_to "Back to all venues", venues_path, class: "btn btn-gradient"%>
       <!-- if user is an owner of venues to display the buttons below-->
@@ -24,7 +26,7 @@
     data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-gradient"%>
     <%= link_to "Edit", edit_venue_path(@venue), class: "btn btn-gradient"%>
     <% end %>
-
+</div>
 
 <div class="review-container">
 <br>
