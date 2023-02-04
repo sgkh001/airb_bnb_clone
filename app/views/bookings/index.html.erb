@@ -1,8 +1,8 @@
-
 <%= link_to"Back to venues", venues_path, class: "btn btn-primary"  %>
 
 <h1>BOOKINGS</h1>
-
+<hr>
+<hr>
 <% if current_user.owner? %>
   <% owner = current_user.id %>
   <% owner_venue = Venue.where(user_id: owner)  %>

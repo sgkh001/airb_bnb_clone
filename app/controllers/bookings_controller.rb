@@ -25,8 +25,9 @@ class BookingsController < ApplicationController
       # go back to all bookings for that venue
       redirect_to venue_path(@venue)
     else
-      render :new, status: :unprocessable_entity
+      render "venues/show"
     end
+
   end
 
   def edit
